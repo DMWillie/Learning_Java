@@ -1,11 +1,12 @@
 package Interface_And_Extend.Charactor;
 
+/*  Author: 北辰
+    日期: 20/10/2019
+    功能: 在匿名类中使用外部的局部变量必修修饰为final
+ */
 public abstract class UseExternalHero {
-
     public abstract void attack();
-
     public static void main(String[] args) {
-
         //在匿名类中使用外部的局部变量damage 必须修饰为final
         int damage = 5;
         //这里使用本地类SimulationHero来模拟匿名类的隐藏属性机制
