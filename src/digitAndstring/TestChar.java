@@ -1,4 +1,4 @@
-package digit;
+package digitAndstring;
 
 /*  Author: 北辰
     日期: 25/10/2019
