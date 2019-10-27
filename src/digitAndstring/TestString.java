@@ -33,5 +33,36 @@ public class TestString {
         String sentenceFormat ="%s 在进行了连续 %d 次击杀后，获得了 %s 的称号%n";
         String sentence2 = String.format(sentenceFormat, name,kill,title);
         System.out.println(sentence2);
+
+        /**字符串的定位方法**/
+        String sentence3 = "盖伦,在进行了连续8次击杀后,获得了超神 的称号";
+        System.out.println(sentence.indexOf('8')); //字符第一次出现的位置
+        System.out.println(sentence.indexOf("超神")); //字符串第一次出现的位置
+        System.out.println(sentence.lastIndexOf("了")); //字符串最后出现的位置
+        System.out.println(sentence.indexOf(',',5)); //从位置5开始，出现的第一次,的位置
+        System.out.println(sentence.contains("击杀")); //是否包含字符串"击杀"
+
+        /**字符串的替换方法**/
+        String temp = sentence3.replaceAll("击杀", "被击杀"); //替换所有的
+        temp = temp.replaceAll("超神", "超鬼");
+        System.out.println(temp);
+        temp = sentence3.replaceFirst(",","");//只替换第一个
+        System.out.println(temp);
+
+        /**字符串相等和比较**/
+        String str1 = "the light";
+        String str2 = new String(str1);
+        String str3 = str1.toUpperCase();
+        //==用于判断是否是同一个字符串对象
+        System.out.println(str1==str2);
+        System.out.println(str1.equals(str2));//完全一样返回true
+        System.out.println(str1.equals(str3));//大小写不一样，返回false
+        System.out.println(str1.equalsIgnoreCase(str3));//忽略大小写的比较，返回true
+
+        /**是否以子字符串开始或结束**/
+        String start = "the";
+        String end = "light";
+        System.out.println(str1.startsWith(start));//以...开始
+        System.out.println(str1.endsWith(end)); //以...结束
     }
 }
