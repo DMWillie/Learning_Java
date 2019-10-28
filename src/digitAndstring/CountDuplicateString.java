@@ -28,11 +28,19 @@ public class CountDuplicateString {
         }
         System.out.print("生成的随机字符串数组如下: ");
         solution.printStringArray(arr);
+        System.out.println();
         int[] index = new int[n];       //记录重复单词的下标
-        System.out.printf("总共有%d种重复的字符串,分别是:\n",solution.countDuplicateString_1(arr));
+        System.out.printf("总共有%d种重复的字符串,分别是:\n",solution.countDuplicateString_2(arr,index));
+        /**
         for(String str:solution.map.keySet()){
             if(solution.map.get(str)!=1){
                 System.out.print(str+"\t");
+            }
+        }
+         **/
+        for(int i=0;i<n;i++){
+            if(index[i]>1){
+                System.out.print(arr[i]+"\t");
             }
         }
     }
@@ -72,10 +80,15 @@ public class CountDuplicateString {
         int result = 0;
         for(int i=0;i<arr.length;i++){
             for(int j=i+1;j<arr.length;j++){
-                if(arr[i].equalsIgnoreCase(arr[j])){
-                    index[i] += 1;
+                if(arr[i].equalsIgnoreCase(arr[j])&&(!arr[i].equals("*"))){
+                    index[i] += 1;              //重复的字符串个数增加
+                    arr[j] = "*";       //防止后续重复统计相同的字符
                 }
             }
+            if(index[i]>1){
+                result += 1;
+            }
         }
+        return result;
     }
 }
