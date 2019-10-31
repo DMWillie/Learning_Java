@@ -41,6 +41,7 @@ public class MyStringBuffer implements IStringBuffer {
     @Override
     public void append(String str) {
         // TODO Auto-generated method stub
+        insert(length,str);
     }
     @Override
     public void append(char c) {
@@ -48,6 +49,10 @@ public class MyStringBuffer implements IStringBuffer {
     }
     @Override
     public void insert(int pos, char b) {
+        // TODO Auto-generated method stub
+    }
+    @Override
+    public void insert(int pos,String b){
         // TODO Auto-generated method stub
     }
     @Override
@@ -60,11 +65,26 @@ public class MyStringBuffer implements IStringBuffer {
     }
     @Override
     public void reverse() {
-        // TODO Auto-generated method stub
+        for(int i=0;i<length/2;i++){
+            char temp = value[i];
+            value[i] = value[length-i-1];
+            value[length-i-1] = temp;
+        }
     }
     @Override
     public int length(){
         // TODO Auto-generated method stub
         return 0;
+    }
+    public String toString(){
+        char[] realValue = new char[length];
+        System.arraycopy(value,0,realValue,0,length);
+        return new String(realValue);
+    }
+
+    public static void main(String[] args){
+        MyStringBuffer sb = new MyStringBuffer("there light");
+        sb.reverse();
+        System.out.println(sb);
     }
 }
