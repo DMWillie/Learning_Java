@@ -46,22 +46,60 @@ public class MyStringBuffer implements IStringBuffer {
     @Override
     public void append(char c) {
         // TODO Auto-generated method stub
+        insert(length,String.valueOf(c));
     }
     @Override
     public void insert(int pos, char b) {
         // TODO Auto-generated method stub
+        insert(pos,String.valueOf(b));
     }
     @Override
     public void insert(int pos,String b){
         // TODO Auto-generated method stub
+        if(pos<0)
+            return;
+        if(pos>length)
+            return;
+        if(null==b)
+            return;
+        //扩容
+        while(b.length()+length>capacity){
+            capacity = (int)((b.length()+length)*1.5f);
+            char[] newcharValue = new char[capacity];
+            System.arraycopy(value,0,newcharValue,0,length);
+            value = newcharValue;
+        }
+
+        char[] cs = b.toCharArray();
+        //将数据右移以便新字符串插入
+        System.arraycopy(value,pos,value,pos+b.length(),length-pos);
+        //把要插入的数据插入到指定位置
+        System.arraycopy(cs,0,value,pos,cs.length);
+        length += cs.length;
     }
     @Override
     public void delete(int start) {
         // TODO Auto-generated method stub
+        delete(start,length);
     }
     @Override
     public void delete(int start, int end) {
         // TODO Auto-generated method stub
+        //边界条件判断
+        if(start<0)
+            return;
+        if(start>length)
+            return;
+        if(end<0)
+            return;
+        if(end>length)
+            return;
+        if(start>=end)
+            return;
+
+        //将后面的数据直接左移到删除的起始位置
+        System.arraycopy(value,end,value,start,length-end);
+        length -= end-start;
     }
     @Override
     public void reverse() {
@@ -74,7 +112,7 @@ public class MyStringBuffer implements IStringBuffer {
     @Override
     public int length(){
         // TODO Auto-generated method stub
-        return 0;
+        return length;
     }
     public String toString(){
         char[] realValue = new char[length];
@@ -84,7 +122,26 @@ public class MyStringBuffer implements IStringBuffer {
 
     public static void main(String[] args){
         MyStringBuffer sb = new MyStringBuffer("there light");
+        System.out.println(sb);
+        sb.insert(0, "let ");
+        System.out.println(sb);
+
+        sb.insert(10, "be ");
+        System.out.println(sb);
+        sb.insert(0, "God Say:");
+        System.out.println(sb);
+        sb.append("!");
+        System.out.println(sb);
+        sb.append('?');
+        System.out.println(sb);
         sb.reverse();
+        System.out.println(sb);
+
+        sb.reverse();
+        System.out.println(sb);
+        sb.delete(0,4);
+        System.out.println(sb);
+        sb.delete(4);
         System.out.println(sb);
     }
 }
