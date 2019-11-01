@@ -39,7 +39,7 @@ public class Exercise_StringBuffer {
             str.append(e.getRandomString_2(10));
         }
         long end = System.currentTimeMillis();
-        System.out.println(str);
+        //System.out.println(str);
         return end-start;
     }
 }
