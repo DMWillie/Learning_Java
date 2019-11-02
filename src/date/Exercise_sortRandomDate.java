@@ -44,7 +44,7 @@ public class Exercise_sortRandomDate {
 
     }
 
-    //将日期解析为相应的字符串
+    //将日期解析为相应的字符串***
     private static String toString(Date d,String format){
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(d);
