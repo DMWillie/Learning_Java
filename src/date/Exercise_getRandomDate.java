@@ -7,17 +7,31 @@ package date;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Exercise_getRandomDate {
+
+    HashMap<String,Integer> startDate =
+            new HashMap<>();        //存储开始日期
+    HashMap<String, Integer> endDate =
+            new HashMap<>();        //存储结束日期
+
     public static void main(String[] args){
         Exercise_getRandomDate solution = new Exercise_getRandomDate();
+        solution.getDateInterval();
+        System.out.printf("%s-%s-%s %s:%s:%s 和 %s-%s-%s %s:%s:%s之间的随机日期为: \n"
+        ,solution.startDate.get("year"),solution.startDate.get("month"),
+                solution.startDate.get("day"),solution.startDate.get("hour"),
+                solution.startDate.get("minute"),solution.startDate.get("second"),
+                solution.endDate.get("year"),solution.endDate.get("month"),
+                solution.endDate.get("day"),solution.endDate.get("hour"),
+                solution.endDate.get("minute"),solution.endDate.get("second"));
+        System.out.println(solution.getRandomDate(solution.startDate,solution.endDate));
+    }
+
+    //通过用户输入得到一个开始日期和结束日期
+    public void getDateInterval(){
         Scanner input = new Scanner(System.in);
-        HashMap<String,Integer> startDate =
-                new HashMap<>();        //存储开始日期
-        HashMap<String, Integer> endDate =
-                new HashMap<>();        //存储结束日期
         System.out.println("请输入一个开始的日期(1900年之后):");
         System.out.print("year: ");
         startDate.put("year",input.nextInt());
@@ -44,8 +58,6 @@ public class Exercise_getRandomDate {
         endDate.put("minute",input.nextInt());
         System.out.print("second: ");
         endDate.put("second",input.nextInt());
-        System.out.println("这两个日期之间的随机日期为: ");
-        System.out.println(solution.getRandomDate(startDate,endDate));
     }
 
     public Date getRandomDate(HashMap<String,Integer> startMap,HashMap<String,Integer> endMap){
