@@ -17,16 +17,18 @@ public class CheckingAccount extends Account{
         this.overdraftProtection = protect;     //将局部变量传入成员变量中
     }
 
+    @Override
     public void withdraw(double amt) throws OverdraftfException{
         if(getBalance()+overdraftProtection<amt){// 若取钱金额超过余额+透支额,则会抛出异常,并根据自定义异常返回透支额
-            throw new OverdraftfException("您的余额不足,您当前透支额度为："+(amt-getBalance()-overdraftProtection),
+            throw new OverdraftfException("您的余额不足,您当前超过最大透支额度,已超过："+(amt-getBalance()-overdraftProtection),
                     amt-getBalance()-overdraftProtection);
         }
         if(getBalance()<amt){
             setBalance(0);
             overdraftProtection -= amt-getBalance();
+        }else{
+            setBalance(getBalance()-amt);
         }
-        setBalance(getBalance()-amt);
     }
 
     public static void main(String[] args){
@@ -43,7 +45,8 @@ public class CheckingAccount extends Account{
                 System.out.println("取走550元,您的账户当前余额为: "+money.getBalance());
             }
         }catch(OverdraftfException e){
-            System.err.println("您的账户透支金额为: "+e.getDeficit());
+            System.out.println();
+            System.err.println("您的账户可透支金额为: "+e.getDeficit());
         }
     }
 }
