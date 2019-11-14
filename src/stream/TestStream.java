@@ -35,5 +35,20 @@ public class TestStream {
             e.printStackTrace();
         }
 
+        try{
+            //准备文件lol2.txt其中的内容是空的
+            File f2 = new File("d:/lol2.txt");
+            //准备长度是2的字节数组,用88,89初始化,其对应的字符分别是X,Y
+            byte[] data = {88,89};
+            //创建基于文件的输出流
+            FileOutputStream fos = new FileOutputStream(f2);
+            //把数据写入到输出流
+            fos.write(data);
+            //关闭输出流
+            fos.close();
+        }catch(IOException e){
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
