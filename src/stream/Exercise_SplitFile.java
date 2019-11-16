@@ -3,13 +3,13 @@ package stream;
 /*  Author: 北辰
     日期: 16/11/2019
     功能: 找到一个大于10k的文件，按照10k为单位，拆分成多个子文件，并且以编号作为文件名结束。
-        比如文件 git.exe，大小是43k。
+        比如文件 git.exe，大小是42k。
         拆分之后，成为
         git.exe-0,大小为10240字节
         git.exe-1,大小为10240字节
         git.exe-2,大小为10240字节
         git.exe-3,大小为10240字节
-        git.exe-4,大小为3072字节
+        git.exe-4,大小为2136字节
  */
 
 import java.io.File;
@@ -81,7 +81,7 @@ public class Exercise_SplitFile {
             }
             int remainLen = (int)f.length()-num*size;
             if(remainLen>0){  //若f的长度不是size的整数倍
-                File fs = new File("d:/git.exe-"+(num+1));
+                File fs = new File("d:/git.exe-"+num);
                 FileOutputStream foo = new FileOutputStream(fs);
                 foo.write(data,remainLen,remainLen);
                 foo.close();
