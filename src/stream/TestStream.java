@@ -4,8 +4,11 @@ package stream;
     日期: 12/11/2019
     功能: 测试文件流Stream的一些用法
  */
-
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
 public class TestStream {
 
