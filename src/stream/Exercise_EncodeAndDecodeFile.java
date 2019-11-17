@@ -34,6 +34,9 @@ public class Exercise_EncodeAndDecodeFile {
         encodeFile(f1,f2);      //进行文件加密
         System.out.println(f1+"加密后的内容为: ");
         printFile(f2);
+        decodeFile(f2,f1);
+        System.out.println("对"+f2+"进行解密之后的内容为: ");
+        printFile(f1);
     }
 
     //文件加密算法
@@ -52,6 +55,32 @@ public class Exercise_EncodeAndDecodeFile {
                         data[i] = 'A';
                     }else{      //将字符所对应的数字加1再转换为字符
                         data[i] = (char)((int)data[i]+1);
+                    }
+                }
+            }
+            fw.write(data);     //将加密后的文件内容写入加密文件
+        }catch(IOException e){
+            System.out.println("读取文件或写入文件时发生错误");
+            e.printStackTrace();
+        }
+    }
+
+    //文件解密算法
+    public static void decodeFile(File decodingFile,File decodedFile){
+        char[] data = new char[(int)decodingFile.length()];
+        try(FileReader fr=new FileReader(decodingFile);
+            FileWriter fw=new FileWriter(decodedFile)){
+            fr.read(data);      //将字符流读入到字符数组data中
+            for(int i=0;i<data.length;i++){
+                if(Character.isDigit(data[i])||Character.isLetter(data[i])){ //若为数字字符或字母字符
+                    if(data[i]=='0'){
+                        data[i] = '9';
+                    }else if(data[i]=='a'){
+                        data[i] = 'z';
+                    }else if(data[i]=='A'){
+                        data[i] = 'Z';
+                    }else{      //将字符所对应的数字加1再转换为字符
+                        data[i] = (char)((int)data[i]-1);
                     }
                 }
             }
