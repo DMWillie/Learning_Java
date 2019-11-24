@@ -10,6 +10,10 @@ package Class_Demo;
  */
 public class Support extends Hero {
 
+    public Support(int num){
+        super(num);
+    }
+
     //治疗方法
     public void heal(){
         System.out.println(name+"使用了治疗");
@@ -26,13 +30,13 @@ public class Support extends Hero {
     }
 
     public static void main(String[] args){
-        Support nameo = new Support();
+        Support nameo = new Support(2);
         nameo.name = "娜美";
 
-        Hero garen = new Hero();
+        Hero garen = new Hero(1);
         garen.name = "盖伦";
 
-        Hero teem = new Hero();
+        Hero teem = new Hero(2);
         teem.name = "提莫";
 
         nameo.heal();

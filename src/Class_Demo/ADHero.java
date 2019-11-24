@@ -7,7 +7,9 @@ package Class_Demo;
  */
 
 public class ADHero extends Hero{
-
+    public ADHero(int num){
+        super(num);
+    }
     public void attack() {
         System.out.println(name + " 进行了一次攻击 ，但是不确定打中谁了");
     }
@@ -20,12 +22,12 @@ public class ADHero extends Hero{
     }
 
     public static void main(String[] args) {
-        ADHero bh = new ADHero();
+        ADHero bh = new ADHero(1);
         bh.name = "赏金猎人";
 
-        Hero h1 = new Hero();
+        Hero h1 = new Hero(1);
         h1.name = "盖伦";
-        Hero h2 = new Hero();
+        Hero h2 = new Hero(2);
         h2.name = "提莫";
 
         bh.attack(h1);
