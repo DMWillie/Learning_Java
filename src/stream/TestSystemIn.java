@@ -1,7 +1,6 @@
 package stream;
 
-/*
-    Author: 北辰
+/*  Author: 北辰
     日期: 24/11/2019
     功能: System.in可以从控制台输入数据
  */
