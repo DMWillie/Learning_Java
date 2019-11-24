@@ -2,13 +2,18 @@ package Class_Demo;
 /*
     Author: 北辰
     日期: 07/10/2019
+    修改日期: 24/11/2019,实现Serializable接口
     功能: 设计一个英雄类
  */
 
 
-public class Hero {
-    String name; //姓名
-    float hp; //血量
+import java.io.Serializable;
+
+public class Hero implements Serializable {
+    //表示这个类当前的版本,如果有了变化,比如新设计了属性,就应该修改这个版本号
+    private static final long serialVersionUID = 1L;
+    public String name; //姓名
+    public float hp; //血量
     float armor; //护甲
     int moveSpeed; //移动速度
 
