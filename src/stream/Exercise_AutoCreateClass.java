@@ -20,10 +20,10 @@ public class Exercise_AutoCreateClass {
         System.out.println("请输入属性的名称: ");
         String propertyName = input.nextLine();
         File f = new File("d:/Learning_Java/src/data/"+className+".java");
-        autoCreateClass_1(f,className,type,propertyName);
-        System.out.println("替换后的内容为: ");
-        printFile(f);
-        System.out.println("文件保存在: "+f.toString());
+        //autoCreateClass_1(f,className,type,propertyName);
+        autoCreateClass_2(f,className,type,propertyName);
+        //printFile(f);
+        //System.out.println("文件保存在: "+f.toString());
     }
 
     //根据类名,属性类型,属性名自动创建类
@@ -62,6 +62,42 @@ public class Exercise_AutoCreateClass {
             pw.print("}");
         }catch(IOException e){
             e.printStackTrace();
+        }
+    }
+    //方法二***,根据模板template.txt来替换文件内容
+    private static void autoCreateClass_2(File f,String className,String type,String propertyName){
+        //模板文件
+        File templateFile = new File("D:/Learning_Java/src/data/template.txt");
+        //将属性名的首字母大写
+        Character firstChar = propertyName.toCharArray()[0];
+        String upperName = propertyName.replace(firstChar,
+                Character.toUpperCase(firstChar));
+        try(
+                FileReader fr = new FileReader(templateFile);
+                BufferedReader br = new BufferedReader(fr);
+                FileWriter fw = new FileWriter(f);
+                PrintWriter pw = new PrintWriter(fw);
+                ){
+            System.out.println("替换之后的内容为: ");
+            pw.println("package data;");
+            String line = null;
+            while((line=br.readLine())!=null){
+                if(line.contains("@class@")) //replace原地替换,而是返回一个新的字符串
+                    line = line.replace("@class@",className);
+                if(line.contains("@type@"))
+                    line = line.replace("@type@",type);
+                if(line.contains("@property@"))
+                    line = line.replace("@property@",propertyName);
+                if(line.contains("@Uproperty@"))
+                    line = line.replace("@Uproperty@",upperName);
+                pw.println(line);
+            }
+            //printFile(f);
+        }catch(IOException e){
+            e.printStackTrace();
+        }finally{
+            printFile(f);
+            System.out.println("文件保存在: "+f.getAbsolutePath());
         }
     }
 
