@@ -28,6 +28,7 @@ public class TestGeneric {
         //引入泛型Generic
         //声明容器的时候，就指定了这种容器，只能放Hero，放其他的就会出错
         List<Hero> genericheros = new ArrayList<Hero>();
+        List<Hero> genericheros2 = new ArrayList<>();//JDK7后支持这种写法
         genericheros.add(new Hero("盖伦"));
         //如果不是Hero类型，根本就放不进去
         //genericheros.add(new Item("冰杖"));
