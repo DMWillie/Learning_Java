@@ -13,7 +13,6 @@ public class Hero {
     public int damage;
 
     public Hero(){
-
     }
     //增加一个初始化name的构造方法
     public Hero(String name){
