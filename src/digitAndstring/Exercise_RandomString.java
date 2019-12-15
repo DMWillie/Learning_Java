@@ -17,10 +17,10 @@ public class Exercise_RandomString {
         //方法一
         char[] charArray = new char[n];
         for(int i=0;i<charArray.length;i++){
-            int randomUppercase = (int)Math.random()*26 + 65;   //A-Z的ASCII范围为65-90
-            int randomLowercase = (int)Math.random()*26 + 97;   //a-z的ASCII范围为97-122
-            int randomDigit = (int)Math.random()*10 + 48;   //0-9的ASCII范围为48-57
-            int randomchoice = (int)Math.random()*3 + 1; //这里用randomchoice选择每个字符是
+            int randomUppercase = (int)(Math.random()*26 + 65);   //A-Z的ASCII范围为65-90
+            int randomLowercase = (int)(Math.random()*26 + 97);   //a-z的ASCII范围为97-122
+            int randomDigit = (int)(Math.random()*10 + 48);   //0-9的ASCII范围为48-57
+            int randomchoice = (int)(Math.random()*3 + 1); //这里用randomchoice选择每个字符是
             //大写字母，小写字母还是数字
             switch(randomchoice){
                 case 1:
@@ -52,10 +52,14 @@ public class Exercise_RandomString {
                 table[i] = (short)(61+i);
             }
         }
+//        for(short j:table){
+//            System.out.print(j+"\t");
+//        }
         char[] charArray = new char[n];
         int s;
         for(int i=0;i<n;i++){
-            s = (int)Math.random()*table.length;
+            s = (int)(Math.random()*table.length);  //不加两个括号会每次生成0
+            //System.out.println(s);
             charArray[i] = (char)table[s];
         }
         return String.valueOf(charArray);
