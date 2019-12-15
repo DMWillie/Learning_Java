@@ -33,8 +33,17 @@ public class Exercise_CountDuplicateString {
         c1.printStringArray(arr);
         HashSet<String> result = e.countDuplicateString(arr);
         System.out.println();
+        System.out.println("-------使用HashSet方法--------");
         System.out.printf("总共有%d种重复的字符串%n分别是:%n",result.size());
         System.out.println(result);
+        System.out.println("--------使用其他方法--------");
+        int[] index = new int[n];       //记录重复单词的下标
+        System.out.printf("总共有%d种重复的字符串\n分别是:\n",c1.countDuplicateString_2(arr,index));
+        for(int i=0;i<index.length;i++){
+            if(index[i]>=1){
+                System.out.print(arr[i]+"\t");
+            }
+        }
     }
 
     //使用HashSet统计字符串数组中重复的字符串并打印出来
