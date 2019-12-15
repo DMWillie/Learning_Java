@@ -39,7 +39,7 @@ public class CountDuplicateString {
         }
          **/
         for(int i=0;i<n;i++){
-            if(index[i]>1){
+            if(index[i]>=1){
                 System.out.print(arr[i]+"\t");
             }
         }
@@ -76,16 +76,15 @@ public class CountDuplicateString {
 
     public int countDuplicateString_2(String[] arr,int[] index){
         //统计字符串数组里重复的字符串有多少种
-
         int result = 0;
         for(int i=0;i<arr.length;i++){
             for(int j=i+1;j<arr.length;j++){
-                if(arr[i].equalsIgnoreCase(arr[j])&&(!arr[i].equals("*"))){
+                if(arr[i].equals(arr[j])&&(!arr[i].equals("*"))){
                     index[i] += 1;              //重复的字符串个数增加
                     arr[j] = "*";       //防止后续重复统计相同的字符
                 }
             }
-            if(index[i]>1){
+            if(index[i]>=1){
                 result += 1;
             }
         }
