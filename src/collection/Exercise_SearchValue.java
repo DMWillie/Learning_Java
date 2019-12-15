@@ -1,7 +1,7 @@
 package collection;
 
 /*  Author: 北辰
-    日期: 18/12/2019
+    日期: 14/12/2019
     功能: 准备一个ArrayList其中存放3000000(三百万个)Hero对象，其名称是随机的,格式是hero-[4位随机数]
 hero-3229
 hero-6232
