@@ -8,6 +8,7 @@ package digitAndstring;
 public class Exercise_RandomString {
     public static void main(String[] args){
         Exercise_RandomString e = new Exercise_RandomString();
+        //e.printCharacter(255);
         System.out.println(e.getRandomString_2(5));
     }
     /**
@@ -47,7 +48,7 @@ public class Exercise_RandomString {
                 table[i] = (short)(48+i);   //48+i一定要加括号,否则会报错
             }
             else if(i<36){          //存储A-Z
-                table[i] = (short)(45+i);
+                table[i] = (short)(55+i);
             }else{                  //存储a-z
                 table[i] = (short)(61+i);
             }
@@ -63,5 +64,15 @@ public class Exercise_RandomString {
             charArray[i] = (char)table[s];
         }
         return String.valueOf(charArray);
+    }
+    //打印出ASCII中0-n对应的字符
+    public void printCharacter(int n){
+        for(int i=0;i<n;i++){
+            char c = (char)i;
+            if(i%10==0){
+                System.out.println();
+            }
+            System.out.print(i+"->"+c+"\t\t");
+        }
     }
 }
