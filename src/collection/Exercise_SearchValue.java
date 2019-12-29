@@ -2,6 +2,7 @@ package collection;
 
 /*  Author: 北辰
     日期: 14/12/2019
+    修改日期: 29/12/2019 (加入自定义MyHashMap比较)
     功能: 准备一个ArrayList其中存放3000000(三百万个)Hero对象，其名称是随机的,格式是hero-[4位随机数]
 hero-3229
 hero-6232
@@ -36,6 +37,8 @@ public class Exercise_SearchValue {
         searchHeroName1(list,"hero-5555");
         System.out.println("------------使用HashMap查找------------");
         searchHeroName2(list,"hero-5555");
+        System.out.println("------------使用自定义HashMap查找--------------");
+        searchHeroName3(list,"hero-5555");
     }
     //方法一，使用for循环查找指定名字的对象并打印出来
     public static void searchHeroName1(ArrayList<Hero> list,String name){
@@ -106,6 +109,47 @@ public class Exercise_SearchValue {
         System.out.println("]");
         long end = System.currentTimeMillis();
         System.out.printf("创建HashMap耗时%s毫秒%n",t2-t1);
+        System.out.printf("总共找到%d个名字为:%s的英雄对象,耗时%s毫秒%n",
+                count,name,end-start);
+    }
+    //方法三,使用自定义MyHashMap寻找
+    public static void searchHeroName3(ArrayList<Hero> list,String name){
+        //创建MyHashMap
+        long t1 = System.currentTimeMillis();
+        MyHashMap heroMap = new MyHashMap();
+        for(Hero h:list){
+            ArrayList<Hero> l = (ArrayList<Hero>)heroMap.get(h.name);
+            if(l==null){  //heroMap不存在对应的集合,即键"h.name"不存在
+                l = new ArrayList<Hero>();  //创建一个Hero类型的集合
+                heroMap.put(h.name,l);
+            }
+            //存在对应的集合则把对应的英雄添加到集合中
+            l.add(h);
+        }
+        long t2 = System.currentTimeMillis();
+        //开始从HashMap中寻找对应的英雄并打印出来
+        long start = System.currentTimeMillis();
+        //将指定name的结合找出来
+        ArrayList<Hero> heroSearch = (ArrayList<Hero>) heroMap.get(name);
+        int count = 0;
+        //通过遍历打印英雄的编号
+        System.out.print("[");
+        for(Iterator<Hero> it = heroSearch.iterator();it.hasNext();){
+            Hero hh = it.next();
+            if(count==0){
+                System.out.print("hero:"+hh.num);
+            }
+            else if(count%10==0){
+                System.out.println();
+                System.out.print("hero:"+hh.num);
+            }else{
+                System.out.print(","+"hero:"+hh.num);
+            }
+            count++;
+        }
+        System.out.println("]");
+        long end = System.currentTimeMillis();
+        System.out.printf("创建MyHashMap耗时%s毫秒%n",t2-t1);
         System.out.printf("总共找到%d个名字为:%s的英雄对象,耗时%s毫秒%n",
                 count,name,end-start);
     }
