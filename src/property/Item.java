@@ -2,13 +2,13 @@ package property;
 
 /*  Author: 北辰
     日期: 30/11/2019
-    修改日期: 01/01/2020 ,重写toString()方法
+    修改日期: 01/01/2020 ,重写toString()方法,并实现Comparable接口,使得Item按照价格从高到低排序
     功能: 物品类Item
  */
 
-public class Item {
-    String name;
-    int price;
+public class Item implements Comparable<Item>{
+    public String name;
+    public int price;
 
     public Item(){
     }
@@ -19,7 +19,14 @@ public class Item {
     public void effect(){
         System.out.println("物品使用后，可以有效果");
     }
+    @Override
+    public int compareTo(Item anotherItem){
+        if(price<=anotherItem.price)
+            return 1;
+        else
+            return -1;
+    }
     public String toString(){
-        return "[Item "+name+", price="+price+"]";
+        return "["+name+", price="+price+"]";
     }
 }
