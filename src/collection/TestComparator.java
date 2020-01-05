@@ -39,6 +39,9 @@ public class TestComparator {
             }
         };
         Collections.sort(heros,c);
+        /**使用Lambda表达式方式
+        Collections.sort(heros,(h1,h2)->h1.hp>=h2.hp?1:-1);
+         */
         System.out.println("按照血量排序后的集合: ");
         System.out.println(heros);
     }
