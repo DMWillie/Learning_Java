@@ -14,6 +14,7 @@ Stream 和Collection结构化的数据不一样，Stream是一系列的元素，
         结束操作才进行真正的遍历行为，在遍历的时候，才会去进行中间操作的相关判断
  */
 
+import character.MyHero;
 import character.MyHeroCompare;
 
 import java.util.ArrayList;
@@ -80,5 +81,38 @@ public class TestAggregate {
                 .stream()
                 .map((h)->h.name+"-"+h.hp+"-"+h.damage)
                 .forEach(h->System.out.println(h));
+        /**结束操作**/
+        System.out.println("遍历集合中的每个数据");
+        heros
+                .stream()
+                .forEach(h->System.out.print(h));
+        System.out.println("返回一个数组");
+        Object[] hss = heros
+                .stream()
+                .toArray();
+        System.out.println(Arrays.toString(hss));
+        System.out.println("返回伤害最低的那个英雄");
+        MyHeroCompare minDamageHero = heros
+                .stream()
+                .min((h1,h2)->h1.damage-h2.damage)
+                .get();
+        System.out.print(minDamageHero);
+        System.out.println("返回伤害最高的那个英雄");
+        MyHeroCompare maxDamageHero = heros
+                .stream()
+                .max((h1,h2)->h1.damage-h2.damage)
+                .get();
+        System.out.print(maxDamageHero);
+        System.out.println("流中数据的总数");
+        long count = heros
+                .stream()
+                .count();
+        System.out.println(count);
+        System.out.println("第一个英雄");
+        MyHeroCompare fh = heros
+                .stream()
+                .findFirst()
+                .get();
+        System.out.print(fh);
     }
 }
