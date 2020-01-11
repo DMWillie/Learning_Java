@@ -14,7 +14,6 @@ Stream 和Collection结构化的数据不一样，Stream是一系列的元素，
         结束操作才进行真正的遍历行为，在遍历的时候，才会去进行中间操作的相关判断
  */
 
-import character.MyHero;
 import character.MyHeroCompare;
 
 import java.util.ArrayList;
