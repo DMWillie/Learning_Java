@@ -2,11 +2,10 @@ package multiplethread;
 
 /*  Author: 北辰
     日期: 12/01/2020
-    功能: 日志线程,打印都用过哪些字符串去匹配,这个日志线程设计为守护线程
+    功能: 日志线程,打印都用过哪些字符串去匹配,这个日志线程设计为守护线程(不完善)
  */
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class LogThread extends Thread implements Runnable{
 

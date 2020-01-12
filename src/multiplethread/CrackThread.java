@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /*  Author: 北辰
     日期: 12/01/2020
     功能: 破解密码线程,使用穷举法来破解密码
-    有两种实现方式:多层for循环和递归
+    有两种实现方式:多层for循环和递归(不完善)
  */
 public class CrackThread implements Runnable{
     private int len = 0;    //要破解的密码长度
