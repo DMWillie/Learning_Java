@@ -27,4 +27,12 @@ public class Hero {
     public boolean isDead(){
         return 0>=hp?true:false;
     }
+    //英雄发动波动拳技能(第k发)
+    public void launchSkill(int k){
+        System.out.printf("%s发动第%d次冲击拳%n",name,k);
+    }
+    //英雄充能(充能t秒)
+    public void charge(int t){
+        System.out.printf("%s开始为时%d秒的充能%n",name,t);
+    }
 }
