@@ -5,15 +5,18 @@ import java.util.ArrayList;
 /*  Author: 北辰
     日期: 12/01/2020
     功能: 破解密码线程,使用穷举法来破解密码
-    有两种实现方式:多层for循环和递归(不完善)
+    有两种实现方式:多层for循环和递归
+    改进之处: 增加穷举法破解正确密码之后的提示
  */
 public class CrackThread implements Runnable{
-    private int len = 0;    //要破解的密码长度
-    public ArrayList<String> container
-            = new ArrayList<>();     //所有穷举法生成的密码放进这个容器中
+    private int len;    //要破解的密码长度
+    private String password;     //正确的密码
+    public ArrayList<String> container;     //所有穷举法生成的密码放进这个容器中
 
-    public CrackThread(int len){
-        this.len = len;
+    public CrackThread(String password,ArrayList<String> container){
+        this.password = password;
+        this.container = container;
+        this.len = password.length();
     }
 
     @Override
@@ -46,15 +49,19 @@ public class CrackThread implements Runnable{
             passCode[index] = (char)i;
             if(index==n-1){ //当生成的密码数组长度为n时,添加该密码到容器中
                 container.add(String.valueOf(passCode));
+                if(String.valueOf(passCode).equals(password)){
+                    //破解了正确的密码
+                    System.out.printf("通过穷举法得到正确的密码为: %s%n",String.valueOf(passCode));
+                }
             }else{
                 crackCode2(n,index+1,passCode);
             }
         }
     }
-//    public static void main(String[] args) {
-//        CrackThread t = new CrackThread(3);
-//        char[] passArr = new char[3];
-//        t.crackCode2(3,0,passArr);
-//        System.out.println(t.container);
-//    }
+    public static void main(String[] args) {
+        CrackThread t = new CrackThread("abc",new ArrayList<String>());
+        char[] passArr = new char[3];
+        t.crackCode2(3,0,passArr);
+        System.out.println(t.container);
+    }
 }
