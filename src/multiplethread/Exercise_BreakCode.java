@@ -1,7 +1,7 @@
 package multiplethread;
 /*  Author: 北辰
     日期: 12/01/2020
-    功能: 破解密码(不完善)
+    功能: 破解密码
 1. 生成一个长度是3的随机字符串，把这个字符串当作密码
 2. 创建一个破解线程，使用穷举法，匹配这个密码
 3. 创建一个日志线程，打印都用过哪些字符串去匹配，这个日志线程设计为守护线程
@@ -11,15 +11,17 @@ package multiplethread;
 
 import digitAndstring.Exercise_RandomString;
 
+import java.util.ArrayList;
+
 public class Exercise_BreakCode {
     public static void main(String[] args) {
         Exercise_RandomString e = new Exercise_RandomString();
         String password = e.getRandomString_2(3);   //生成一个3位包含大小写字母,数字的字符串密码
         System.out.println("生成的3位字符串密码为: "+password);
-        CrackThread t1 = new CrackThread(password.length());
-        new Thread(t1).start();  //启动破解线程来破解密码
+        CrackThread t1 = new CrackThread(password,new ArrayList<String>());
+        new Thread(t1).start();     //启动破解密码线程
         LogThread t2 = new LogThread(t1.container);
-        t2.setDaemon(true); //设置日志线程为守护线程
+        t2.setDaemon(true); //设置日程线程为守护线程(当破解线程结束后日志线程也不再运行)
         t2.start();
     }
 }
