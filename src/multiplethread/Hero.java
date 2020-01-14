@@ -2,7 +2,8 @@ package multiplethread;
 
 /*  Author: 北辰
     日期: 11/01/2020
-    功能: 多进程章节的英雄类
+    修改日期: 15/01/2020
+    功能: 多进程章节的英雄类,增加英雄的回血和掉血方法
  */
 
 public class Hero {
@@ -11,6 +12,16 @@ public class Hero {
     public float hp;
     public int damage;
 
+    //回血
+    public void recovery(){
+        //每次回1滴血
+        hp = hp + 1;
+    }
+    //掉血
+    public void hurt(){
+        //每次掉1滴血
+        hp = hp - 1;
+    }
     public void attackHero(Hero h){
         try{
             //为了表示攻击需要时间，每次攻击暂停1000毫秒
