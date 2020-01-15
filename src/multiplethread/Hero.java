@@ -16,11 +16,13 @@ public class Hero {
     public void recovery(){
         //每次回1滴血
         hp = hp + 1;
+        //System.out.println(name+"的血量回复1滴");
     }
     //掉血
     public void hurt(){
         //每次掉1滴血
         hp = hp - 1;
+        //System.out.println(name+"的血量减少1滴");
     }
     public void attackHero(Hero h){
         try{
