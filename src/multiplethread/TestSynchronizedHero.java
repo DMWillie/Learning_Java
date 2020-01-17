@@ -2,7 +2,7 @@ package multiplethread;
 
 /*  Author: 北辰
     日期: 16/01/2020
-    功能: 在recover前，直接加上synchronized ，其所对应的同步对象，就是this
+    功能: 在recovery前，直接加上synchronized ，其所对应的同步对象，就是this
     和hurt方法达到的效果是一样
     外部线程访问gareen的方法，就不需要额外使用synchronized 了
  */
