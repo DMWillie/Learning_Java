@@ -1,7 +1,7 @@
 package multiplethread;
 
 /*  Author: 北辰
-    日期: 19/01/2020
+    日期: 24/01/2020
     功能: 使用Java自带线程池
     线程池类ThreadPoolExecutor在包java.util.concurrent下
  */
